@@ -27,6 +27,8 @@
 import asyncio
 import websockets
 
+# Define handler function
+# Note: the handler is a function that defines how the server interacts with a connected client
 async def my_function(websocket):
     # This loop keeps the connection open to receive multiple messages
     async for message in websocket:
@@ -37,6 +39,8 @@ async def my_function(websocket):
         await websocket.send(reply)
         print(f"Server sent: {reply}")
 
+
+# Starts websockets server with websockets.serve(handler, host, port)
 async def main():
     # Start the server on localhost, port 8765
     async with websockets.serve(my_function, "localhost", 8765):

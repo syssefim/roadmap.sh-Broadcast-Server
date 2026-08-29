@@ -1,3 +1,0 @@
-Use arge parse to start and stop a flask server (also have th option to start flask on a specified port).
-
-How to get a client to connect to the flask server?
