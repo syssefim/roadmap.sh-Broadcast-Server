@@ -16,6 +16,8 @@ async def communicate(msg):
         print(f"Client received: {response}")
 
 if __name__ == "__main__":
-    message = "Hello, WebSocket from somewhere idk lol!"
+    message = input("You: ")
+
+
 
     asyncio.run(communicate(message))
