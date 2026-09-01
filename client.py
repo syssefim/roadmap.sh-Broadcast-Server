@@ -1,5 +1,18 @@
 import asyncio
 import websockets
+import argparse
+
+# argparse
+
+parser = argparse.ArgumentParser(description="Broadcast server.")
+
+parser.add_argument("connect", help="Connects to broadcast server.")
+
+args = parser.parse_args()
+
+
+
+
 
 async def communicate(msg):
     uri = "ws://localhost:8765"
@@ -19,5 +32,5 @@ if __name__ == "__main__":
     message = input("You: ")
 
 
-
-    asyncio.run(communicate(message))
+    if args.connect:
+        asyncio.run(communicate(message))

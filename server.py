@@ -1,31 +1,24 @@
-# import argparse
-
-
-# # argparse
-
-# parser = argparse.ArgumentParser(description="broadcast-server")
-
-
-# parser.add_argument("start", help="Starts the server")
-
-# parser.add_argument("connect", help="Connects the client to the server")
-
-# args = parser.parse_args()
-
-
-# # if args.start:
-# #     print("starting server...")
-# # elif args.connect:
-# #     print("connecting client to server...")
-
-
-# print(f"hi {args.start}")
-
-
-
-
 import asyncio
 import websockets
+import argparse
+
+# argparse
+
+parser = argparse.ArgumentParser(description="Broadcast server.")
+
+parser.add_argument("start", help="Starts the broadcast server.")
+
+args = parser.parse_args()
+
+
+
+
+
+
+
+
+
+# websockets
 
 # Define handler function
 # Note: the handler is a function that defines how the server interacts with a connected client
@@ -48,4 +41,5 @@ async def main():
         await asyncio.Future()  # Run forever
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    if args.start:
+        asyncio.run(main())
