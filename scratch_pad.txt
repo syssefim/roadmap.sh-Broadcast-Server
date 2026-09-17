@@ -3,3 +3,9 @@ TODO
 2. When a client connects, store the connection in a list of connected clients.
 4. Handle client disconnections and remove the client from the list of connected clients.
 7. Implement error handling and graceful shutdown of the server.
+
+
+
+HTTP and WebSockets are two distinct network protocols for client-server communication. HTTP is unidirectional (only the client can initiate the a request and the server responds) and WebSockets is bidirectional which allows both the client and server to send data asynchronously at any time.
+
+
