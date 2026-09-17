@@ -1,8 +1,12 @@
 TODO
 
-2. When a client connects, store the connection in a list of connected clients.
-4. Handle client disconnections and remove the client from the list of connected clients.
 7. Implement error handling and graceful shutdown of the server.
+
+- When the server starts add an argparse argument that specifies the port to start on. Then, add an argparse argument for the client that makes them specify what port to connect to.
+
+- Prevent the client from immediately disconnecting from the server after sending one message and instead implement a method where the client chooses when to disconnect.
+
+
 
 
 
