@@ -41,7 +41,11 @@ async def communicate(msg):
         print(f"Client received: {response}")
 
 if __name__ == "__main__":
-    if args.command == "connect":
-        message = input("You: ")
+    try:
+        while True:
+            if args.command == "connect":
+                message = input("You: ")
 
-        asyncio.run(communicate(message))
+                asyncio.run(communicate(message))
+    except KeyboardInterrupt:
+        print("\nYou left the chat...")
