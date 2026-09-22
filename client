@@ -5,13 +5,6 @@ import argparse
 
 # argparse
 
-# parser = argparse.ArgumentParser(description="Broadcast server.")
-
-# parser.add_argument("connect", help="Connects to broadcast server.")
-
-# args = parser.parse_args()
-
-
 
 parser = argparse.ArgumentParser(description="Broadcast server.")
 subparsers = parser.add_subparsers(dest="command", required=True)
@@ -26,26 +19,60 @@ args = parser.parse_args()
 
 
 
-async def communicate(msg):
+
+
+
+
+
+
+
+
+
+
+async def send_messages(websocket):
+    while True:
+        message = await asyncio.to_thread(input)
+        await websocket.send(message)
+
+async def receive_messages(websocket):
+    async for message in websocket:
+        print(f"{message}")
+
+
+async def communicate():
     uri = f"ws://localhost:{args.port}"
     
     # async with automatically closes the connection when the block ends
     async with websockets.connect(uri) as websocket:
-        
-        # Send data to the server
-        await websocket.send(msg)
-        print(f"Client sent: {msg}")
-        
-        # Wait for the server's reply
-        response = await websocket.recv()
-        print(f"Client received: {response}")
+        print("Connected to server.")
+
+
+        await asyncio.gather(
+            send_messages(websocket),
+            receive_messages(websocket)
+        )
+
+
+        # while True:
+        #     try:
+        #         message = input("You: ")
+
+
+        #         # Send data to the server
+        #         await websocket.send(message)
+
+        #         # Wait for the server's reply
+        #         response = await websocket.recv()
+        #         # print(f"{message} ✅")
+        #         print(response)
+        #     except websockets.ConnectionClosed:
+        #         print("Connection lost...")
+        #         break
+        #     except KeyboardInterrupt:
+        #         print("\nYou left the chat...")
+        #         break
+
 
 if __name__ == "__main__":
-    try:
-        while True:
-            if args.command == "connect":
-                message = input("You: ")
-
-                asyncio.run(communicate(message))
-    except KeyboardInterrupt:
-        print("\nYou left the chat...")
+    if args.command == "connect":
+        asyncio.run(communicate())

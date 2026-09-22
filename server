@@ -2,6 +2,7 @@
 import asyncio
 import websockets
 import argparse
+import uuid
 
 # argparse
 
@@ -12,7 +13,7 @@ subparsers = parser.add_subparsers(dest="command", required=True)
 start_parser = subparsers.add_parser("start", help="Starts the broadcast server.")
 
 # Add the port argument specifically to the "start" command
-start_parser.add_argument("--port", type=int, default=8765, help="Optional flag to specify what port to start server on.")
+start_parser.add_argument("--port", type=int, default=6767, help="Optional flag to specify what port to start server on.")
 
 args = parser.parse_args()
 
@@ -35,7 +36,7 @@ async def main():
     # Note: the handler is a function that defines how the server interacts with a connected client
     async def my_function(websocket):
         connected_clients.append(websocket)
-        print(websocket)
+        #print(websocket)
   
 
         #try finally block that handles connected clients and handles client disconnection
@@ -43,7 +44,11 @@ async def main():
             async for message in websocket:
                 print("Received:", message)
 
-                await websocket.send(f"Echo: {message}")
+                for client in connected_clients:
+                    if client == websocket:
+                        await client.send("✅")
+                    else:
+                        await client.send(f"{client}: {message}")
 
         finally:
             disconnected_client = websocket
@@ -51,12 +56,19 @@ async def main():
             print(f"Client {disconnected_client} disconnected...")
 
 
-    # Start the server on localhost, port 8765
+    # Start the server on localhost
     async with websockets.serve(my_function, "localhost", args.port):
         print(f"Server started at ws://localhost:{args.port}")
         await asyncio.Future()  # Run forever
 
 
 if __name__ == "__main__":
-    if args.command == "start":
-        asyncio.run(main())
+    # if args.command == "start":
+    #     asyncio.run(main())
+
+    try:
+        while True:
+            if args.command == "start":
+                asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\nServer shutting down...")
