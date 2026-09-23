@@ -4,10 +4,6 @@ TODO
 
 
 
-- Make server echo message not just to the connected client but to all clients...
-
-
-Currently the client still disconnects and reconnects after sending every message... How can client stay connected?
 
 
 HTTP and WebSockets are two distinct network protocols for client-server communication. HTTP is unidirectional (only the client can initiate the a request and the server responds) and WebSockets is bidirectional which allows both the client and server to send data asynchronously at any time.
