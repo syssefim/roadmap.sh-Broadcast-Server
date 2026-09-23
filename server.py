@@ -1,22 +1,5 @@
-#!/usr/bin/env python3
 import asyncio
 import websockets
-import argparse
-
-# argparse
-
-parser = argparse.ArgumentParser(description="Broadcast server.")
-subparsers = parser.add_subparsers(dest="command", required=True)
-
-# Create a specific sub-parser for the literal word "start"
-start_parser = subparsers.add_parser("start", help="Starts the broadcast server.")
-
-# Add the port argument specifically to the "start" command
-start_parser.add_argument("--port", type=int, default=6767, help="Optional flag to specify what port to start server on.")
-
-args = parser.parse_args()
-
-
 
 
 
@@ -56,18 +39,18 @@ async def main():
 
 
     # Start the server on localhost
-    async with websockets.serve(my_function, "localhost", args.port):
-        print(f"Server started at ws://localhost:{args.port}")
+    async with websockets.serve(my_function, "localhost", 6767):
+        print(f"Server started at ws://localhost:{6767}")
         await asyncio.Future()  # Run forever
 
 
-if __name__ == "__main__":
-    # if args.command == "start":
-    #     asyncio.run(main())
+# if __name__ == "__main__":
+#     # if args.command == "start":
+#     #     asyncio.run(main())
 
-    try:
-        while True:
-            if args.command == "start":
-                asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\nServer shutting down...")
+#     try:
+#         while True:
+#             if args.command == "start":
+#                 asyncio.run(main())
+#     except KeyboardInterrupt:
+#         print("\nServer shutting down...")

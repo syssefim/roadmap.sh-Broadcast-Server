@@ -1,29 +1,5 @@
-#!/usr/bin/env python3
 import asyncio
 import websockets
-import argparse
-
-# argparse
-
-
-parser = argparse.ArgumentParser(description="Broadcast server.")
-subparsers = parser.add_subparsers(dest="command", required=True)
-
-# Create a specific sub-parser for the literal word "connect"
-connect_parser = subparsers.add_parser("connect", help="Connects to the broadcast server.")
-
-# Add the port argument specifically to the "connect" command
-connect_parser.add_argument("--port", type=int, required=True, help="Optional flag to specify what port to start server on.")
-
-args = parser.parse_args()
-
-
-
-
-
-
-
-
 
 
 
@@ -49,7 +25,7 @@ async def receive_messages(websocket):
 
 
 async def communicate():
-    uri = f"ws://localhost:{args.port}"
+    uri = f"ws://localhost:{6767}"
     
     # async with automatically closes the connection when the block ends
     async with websockets.connect(uri) as websocket:
@@ -69,6 +45,3 @@ async def communicate():
         for task in pending:
             task.cancel()
 
-if __name__ == "__main__":
-    if args.command == "connect":
-        asyncio.run(communicate())
