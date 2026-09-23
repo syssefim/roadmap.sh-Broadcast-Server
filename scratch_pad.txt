@@ -2,8 +2,8 @@ TODO
 
 7. Implement error handling and graceful shutdown of the server.
 
-
-
+- Merge client.py and server.py into something like broadcast-server.py or something like that....
+- Give each connected client a randomly generated username.
 
 
 HTTP and WebSockets are two distinct network protocols for client-server communication. HTTP is unidirectional (only the client can initiate the a request and the server responds) and WebSockets is bidirectional which allows both the client and server to send data asynchronously at any time.

@@ -2,7 +2,6 @@
 import asyncio
 import websockets
 import argparse
-import uuid
 
 # argparse
 
