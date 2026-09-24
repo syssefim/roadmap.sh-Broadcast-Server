@@ -31,10 +31,12 @@ async def main():
                 print("Received:", message)
 
                 for client, username in connected_clients.items():
-                    if client == websocket:
-                        await client.send("✅")
-                    else:
-                        await client.send(f"{connected_clients[websocket]}: {message}")
+                    # if client == websocket:
+                    #     continue
+                    #     await client.send("✅")
+                    # else:
+                    #     await client.send(f"<{connected_clients[websocket]}> {message}")
+                    await client.send(f"<{connected_clients[websocket]}> {message}")
 
         finally:
             disconnected_username = connected_clients[websocket]
