@@ -39,7 +39,6 @@ if __name__ == "__main__":
     # except KeyboardInterrupt:
     #     print("\nServer shutting down...")
 
-
     if args.command == "start":
         asyncio.run(server.main())
     elif args.command == "connect":
