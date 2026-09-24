@@ -7,7 +7,7 @@ import websockets
 
 async def send_messages(websocket):
     while True:
-        message = await asyncio.to_thread(input)
+        message = await asyncio.to_thread(input, "You: ")
 
         # Check if the user wants to leave
         if message.strip().lower() in ['/quit', '/exit']:
@@ -42,4 +42,7 @@ async def communicate():
         # 3. Cancel whichever task is still running (usually the send_task)
         for task in pending:
             task.cancel()
+
+
+
 
