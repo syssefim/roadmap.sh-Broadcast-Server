@@ -1,7 +1,8 @@
 import asyncio
 import websockets
 import rand_username
-
+import sys
+import signal
 
 
 # websockets
@@ -39,7 +40,23 @@ async def main():
             print(f"{disconnected_username} disconnected...")
 
 
+
+
+
+
+    stop_event = asyncio.Event()
+    loop = asyncio.get_running_loop()
+
+    if sys.platform != 'win32':
+        for sig in (signal.SIGINT, signal.SIGTERM):
+            loop.add_signal_handler(sig, stop_event.set)
+
     # Start the server on localhost
     async with websockets.serve(my_function, "localhost", 6767):
-        print(f"Server started at ws://localhost:{6767}")
-        await asyncio.Future()  # Run forever
+        print("Server started at ws://localhost:6767 (Press Ctrl+C to stop)")
+        
+        # Wait here until a signal sets the event
+        await stop_event.wait()
+        
+        print("\nInitiating graceful shutdown...")
+
