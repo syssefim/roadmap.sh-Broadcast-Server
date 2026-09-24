@@ -29,9 +29,7 @@ async def communicate():
     
     # async with automatically closes the connection when the block ends
     async with websockets.connect(uri) as websocket:
-        print("Connected to server. Type /help for commands.")
-
-        # 1. Create independent tasks instead of gathering them directly
+         # 1. Create independent tasks instead of gathering them directly
         send_task = asyncio.create_task(send_messages(websocket))
         receive_task = asyncio.create_task(receive_messages(websocket))
 

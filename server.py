@@ -21,6 +21,8 @@ async def main():
         # connected_clients.append((websocket, rand_username.generate()))   
         connected_clients[websocket] = rand_username.generate()
         #print(websocket)
+        
+        await websocket.send(f"Connected to server as {connected_clients[websocket]}. Type /help for commands.")
   
 
         #try finally block that handles connected clients and handles client disconnection
@@ -32,7 +34,7 @@ async def main():
                     if client == websocket:
                         await client.send("✅")
                     else:
-                        await client.send(f"{username}: {message}")
+                        await client.send(f"{connected_clients[websocket]}: {message}")
 
         finally:
             disconnected_username = connected_clients[websocket]
