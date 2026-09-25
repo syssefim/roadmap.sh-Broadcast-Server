@@ -17,26 +17,26 @@ async def start():
     # Note: the handler is a function that defines how the server interacts with a connected client
     async def my_handler_function(websocket):
         # Oboard client
-        connected_clients[websocket] = rand_username.generate()
-        await websocket.send(f"Connected to server as {connected_clients[websocket]}. Type /help for commands.")  
+        username = rand_username.generate()
+        connected_clients[websocket] = username
+        await websocket.send(f"Connected to server as {username}. Type /help for commands.")  
 
         other_clients = [client for client in connected_clients if client != websocket]
-        broadcast(other_clients, f"{connected_clients[websocket]} joined the chat.")
+        broadcast(other_clients, f"{username} joined the chat.")
+        print(f"{websocket} joined as {username}. Users: ({len(connected_clients)})")
 
 
         # Try finally block that handles connected clients and handles client disconnection
         try:
             async for message in websocket:
-                print("Received:", message)
-
-                for client, username in connected_clients.items():
-                    await client.send(f"<{connected_clients[websocket]}> {message}")
+                print(f"Received and now broadcasting: <{username}> {message}")
+                broadcast(connected_clients, f"<{username}> {message}")
 
         finally:
-            disconnected_username = connected_clients[websocket]
             del connected_clients[websocket]
-            broadcast(connected_clients, f"{disconnected_username} disconnected...")
-            print(f"{disconnected_username} disconnected. Number of clinets is now {len(connected_clients)}")
+            broadcast(connected_clients, f"{username} disconnected...")
+            print(f"{username} disconnected. Users: ({len(connected_clients)})")
+            print(f"Broadcasting: {username} disconnected...")
 
 
 
