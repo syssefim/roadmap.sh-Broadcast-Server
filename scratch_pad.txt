@@ -4,6 +4,8 @@ TODO
 
 When server shutsdown, immediately disconnect connected clients.
 
+In setup instructions make sure to find a way to include the virtual environment...
+
 
 
 HTTP and WebSockets are two distinct network protocols for client-server communication. HTTP is unidirectional (only the client can initiate the a request and the server responds) and WebSockets is bidirectional which allows both the client and server to send data asynchronously at any time.

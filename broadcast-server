@@ -40,6 +40,6 @@ if __name__ == "__main__":
     #     print("\nServer shutting down...")
 
     if args.command == "start":
-        asyncio.run(server.main())
+        asyncio.run(server.start())
     elif args.command == "connect":
-        asyncio.run(client.communicate())
+        asyncio.run(client.connect())

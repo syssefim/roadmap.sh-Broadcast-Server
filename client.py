@@ -31,7 +31,7 @@ async def receive_messages(websocket):
         print(f"{message}")
 
 
-async def communicate():
+async def connect():
     uri = f"ws://localhost:{6767}"
     
     # async with automatically closes the connection when the block ends
