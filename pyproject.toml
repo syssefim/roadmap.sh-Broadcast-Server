@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "broadcast_server"
+version = "0.1.0"
+dependencies = [
+    "prompt_toolkit",
+]
+
+[project.scripts]
+broadcast-server = "broadcast_server:main"
+
+[tool.setuptools]
+py-modules = ["broadcast_server", "rand_username", "client", "server"]
