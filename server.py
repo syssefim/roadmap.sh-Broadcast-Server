@@ -8,7 +8,7 @@ import signal
 
 
 
-async def start():
+async def start(port):
     # Declare a connected clients list
     connected_clients = {}
 
@@ -58,8 +58,8 @@ async def start():
 
 
     # Start the server on localhost
-    async with websockets.serve(my_handler_function, "localhost", 6767):
-        print("Server started at ws://localhost:6767 (Press Ctrl+C to stop)")
+    async with websockets.serve(my_handler_function, "localhost", port):
+        print(f"Server started at ws://localhost:{port} (Press Ctrl+C to stop)")
         
         await stop_event.wait()
         print("\nInitiating graceful shutdown...")

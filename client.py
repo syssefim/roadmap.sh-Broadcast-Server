@@ -31,8 +31,8 @@ async def receive_messages(websocket):
         print(f"{message}")
 
 
-async def connect():
-    uri = f"ws://localhost:{6767}"
+async def connect(port):
+    uri = f"ws://localhost:{port}"
     
     # async with automatically closes the connection when the block ends
     async with websockets.connect(uri) as websocket:
@@ -51,7 +51,4 @@ async def connect():
             # 3. Cancel whichever task is still running (usually the send_task)
             for task in pending:
                 task.cancel()
-
-
-
 

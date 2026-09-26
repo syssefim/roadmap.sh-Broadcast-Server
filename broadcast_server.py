@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import asyncio
-import websockets
 import argparse
 import server
 import client
@@ -16,18 +15,19 @@ def main():
     connect_parser = subparsers.add_parser("connect", help="Connects to the broadcast server.")
 
 
+    
+    start_parser.add_argument("--port", type=int, default=6767, help="Optional flag to specify what port to start server on.")
+    connect_parser.add_argument("--port", type=int, default=6767, help="Optional flag to specify what port to start server on.")
 
-    # # Add the port argument specifically to the "start" command
-    # start_parser.add_argument("--port", type=int, default=6767, help="Optional flag to specify what port to start server on.")
 
     args = parser.parse_args()
 
 
     try:
         if args.command == "start":
-            asyncio.run(server.start())
+            asyncio.run(server.start(args.port))
         elif args.command == "connect":
-            asyncio.run(client.connect())
+            asyncio.run(client.connect(args.port))
     except KeyboardInterrupt:
         print("\nShutting down...")
 
