@@ -4,13 +4,13 @@ Broadcast Server project from [roadmap.sh](https://roadmap.sh/projects/broadcast
 
 ## 📝 About the Project
 
-A simple broadcast server that allows clients to connect to it and send messages that get broadcasted to all connected clients.
+A simple broadcast server that allows clients to connect to it and send messages that get broadcasted to all connected clients. Built in Python with `websockets` for WebSocket connections and `prompt_toolkit` for client-side terminal input, alongside the standard library.
 
 ## 📌 Installation
 
 1. First, clone the repository and cd into the project:
 ```
-https://github.com/syssefim/roadmap.sh-Broadcast-Server
+git clone https://github.com/syssefim/roadmap.sh-Broadcast-Server
 cd roadmap.sh-Broadcast-Server
 ```
 2. Next, install dependencies and configurations with:
@@ -33,6 +33,8 @@ Finally, to connect a client to the server run:
 ```
 broadcast-server connect
 ```
+
+
 
 
 
