@@ -29,7 +29,7 @@ To start the server run:
 ```
 broadcast-server start
 ```
-Then, to connect a client to the server run:
+Then, to connect a client to the server run this command in another terminal:
 ```
 broadcast-server connect
 ```
