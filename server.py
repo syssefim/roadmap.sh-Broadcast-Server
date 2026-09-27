@@ -19,7 +19,7 @@ async def start(port):
         # Oboard client
         username = rand_username.generate()
         connected_clients[websocket] = username
-        await websocket.send(f"Connected to server as {username}. Type /help for commands.")  
+        await websocket.send(f"✅ Connected to server as {username} (Press Ctrl+C to disconnect)")  
 
         other_clients = [client for client in connected_clients if client != websocket]
         broadcast(other_clients, f"{username} joined the chat.")
@@ -62,5 +62,5 @@ async def start(port):
         print(f"Server started at ws://localhost:{port} (Press Ctrl+C to stop)")
         
         await stop_event.wait()
-        print("\nInitiating graceful shutdown...")
+        print("\nInitiating shutdown...")
 
