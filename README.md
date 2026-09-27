@@ -15,21 +15,21 @@ cd roadmap.sh-Broadcast-Server
 ```
 2. Next, install dependencies and configurations with:
 ```
+python3 -m venv .venv
+source .venv/bin/activate
+```
+3. Then, install dependencies and configurations with:
+```
 pip install -e .
 ```
 
 ## ▶️ Running the Project
 
-First, create and activate a virtual environment:
-```
-python3 -m venv .venv
-source .venv/bin/activate
-```
-Then, to start the server run:
+To start the server run:
 ```
 broadcast-server start
 ```
-Finally, to connect a client to the server run:
+Then, to connect a client to the server run:
 ```
 broadcast-server connect
 ```
